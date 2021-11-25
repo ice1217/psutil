@@ -1,0 +1,5 @@
+wheel
+fastapi
+psutil
+uvicorn
+gunicorn
