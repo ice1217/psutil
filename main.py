@@ -20,7 +20,7 @@ else:
 @app.get("/")
 def read_root():
   # Calling psutil.cpu_precent() for 4 seconds
-  cpu_percent = psutil.cpu_percent(1)
+  cpu_percent = str(psutil.cpu_percent(1)) + '%'
   cpu_count = psutil.cpu_count()
   print('CPU Count: ', cpu_count)
   print('The CPU usage is: ', cpu_percent)
@@ -29,7 +29,7 @@ def read_root():
   mem = psutil.virtual_memory()
   mem_total = bytes2human(mem[0])
   mem_available = bytes2human(mem[1])
-  mem_percent = bytes2human(mem[2])
+  mem_percent = str(mem[2]) + '%'
   mem_used = bytes2human(mem[3])
   mem_free = bytes2human(mem[4])
   print('memory total:', mem_total)
