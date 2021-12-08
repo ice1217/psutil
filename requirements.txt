@@ -1,6 +1,4 @@
 wheel
-fastapi
 psutil
-uvicorn
-gunicorn
 pytz
+elasticsearch
