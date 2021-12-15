@@ -23,7 +23,7 @@ def run_monitoring():
   timezone_WIB = pytz.timezone('Asia/Jakarta')
   current_time = datetime.now(timezone_WIB)
   # Calling psutil.cpu_precent() for 4 seconds
-  cpu_percent = str(psutil.cpu_percent(1))
+  cpu_percent = psutil.cpu_percent(1)
   cpu_percent_str = str(psutil.cpu_percent(1)) + '%'
   cpu_count = psutil.cpu_count()
   #print('CPU Count: ', cpu_count)
