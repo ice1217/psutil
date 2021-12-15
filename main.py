@@ -68,11 +68,10 @@ def run_monitoring():
   }
 
   es.index(index="tandai_monitoring", document=doc)
-  #print(res)
   return doc
 
 
 while True:
+  sleep(60 - time() % 60)
   doc = run_monitoring()
   print(doc)
-  sleep(60 - time() % 60)
