@@ -4,20 +4,19 @@ import psutil
 from datetime import datetime
 import pytz
 from time import time, sleep
-from elasticsearch import Elasticsearch
+import pymongo
 
 from psutil._common import bytes2human
+
+mongodb_url = os.environ["mongodb_url"]
+mongodb_db = os.environ["mongodb_db"]
+mongodb_col = os.environ["mongodb_col"]
+
 server_name = os.environ['server_name']
-elastic_host = os.environ['elastic_host']
-elastic_port = os.environ['elastic_port']
-es = Elasticsearch(
-  [
-    {
-      'host': elastic_host,
-      'port': elastic_port
-    }
-  ]
-)
+
+client = pymongo.MongoClient(mongodb_url)
+db = client[mongodb_db]
+col = db[mongodb_col]
 
 def run_monitoring():
   timezone_WIB = pytz.timezone('Asia/Jakarta')
@@ -67,7 +66,7 @@ def run_monitoring():
     'mem_free_str': mem_free_str
   }
 
-  es.index(index="tandai_monitoring", document=doc)
+  x = col.insert_one(doc);
   return doc
 
 
